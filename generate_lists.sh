@@ -11,7 +11,7 @@ for((i=1;i<=${max_page};i++));do
   rm ${i}
 done
 
-cat tickers | xargs -n1 echo -e 'BINANCE:' | tr -d '[:blank:]' > binance_tickers.txt
+cat tickers | xargs -n1 echo -e 'BINANCE:' | tr -d '[:blank:]' | sort > binance_tickers.txt
 rm tickers
 
 cat binance_tickers.txt | grep USDT$ > binance_tickers_USDT.txt
