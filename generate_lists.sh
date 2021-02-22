@@ -12,9 +12,10 @@ for((i=1;i<=${last_page};i++)); do
 	  | sed 's/.*trade\///g' | sed 's/["_]//g' >> "${symbols}"
 done
 
-cat "${symbols}" | xargs -n1 echo -e 'BINANCE:' | tr -d '[:blank:]' | sort > "${tickers}"
+cat "${symbols}" | xargs -n1 echo 'BINANCE:' | tr -d '[:blank:]' | sort > "${tickers}"
 rm "${symbols}"
 
 cat "${tickers}" | grep USDT$ > binance_markets_USDT.txt
 cat "${tickers}" | grep BUSD$ > binance_markets_BUSD.txt
 cat "${tickers}" | grep BTC$  > binance_markets_BTC.txt
+
