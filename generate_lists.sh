@@ -1,7 +1,7 @@
 #!/bin/bash
 coingecko_api='https://api.coingecko.com/api/v3/exchanges/binance/tickers?page='
-tickers="tickers.txt"
-symbols="symbols.txt"
+tickers='tickers.txt'
+symbols='symbols.txt'
 
 last_page=$(curl --silent -IX GET "${coingecko_api}1" -H 'accept: application/json' | grep 'link:' \
 	| sed 's/>.*//g' | sed 's/.*page=//g')
