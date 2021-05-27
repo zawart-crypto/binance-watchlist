@@ -9,7 +9,7 @@ last_page=$(curl --silent -IX GET "${coingecko_api}1" -H 'accept: application/js
 for((i=1;i<=${last_page};i++)); do
   curl --silent -X GET "${coingecko_api}${i}" -H 'accept: application/json' | jq .[] | tail -n +2 \
 	  | jq '.[] | select(.is_stale == false and .is_anomaly == false) .trade_url' \
-	  | sed 's/.*trade\///g' | sed 's/["_]//g' >> "${symbols}"
+	  | sed 's/.*trade\///g' | sed 's/["_]//g' | sed 's/\?.*//g' >> "${symbols}"
 done
 
 cat "${symbols}" | xargs -n1 echo 'BINANCE:' | tr -d '[:blank:]' | sort > "${tickers}"
